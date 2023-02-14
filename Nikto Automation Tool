@@ -1,0 +1,35 @@
+#!/bin/bash
+
+echo "Welcome to the Nikto Scanner Tool"
+echo "Please select one of the following options:"
+echo "1. Basic Scan"
+echo "2. Scan with increased verbosity"
+echo "3. Scan with increased verbosity and evasion"
+echo "4. Scan with increased verbosity, evasion, and host credentials"
+echo "5. Quit"
+
+read -p "Enter your choice (1-5): " choice
+
+if [ $choice -eq 1 ]; then
+echo "Running Basic Nikto Scan"
+read -p "Enter the target host: " target_host
+nikto -h $target_host
+elif [ $choice -eq 2 ]; then
+echo "Running Nikto Scan with increased verbosity"
+read -p "Enter the target host: " target_host
+nikto -h $target_host -verbose
+elif [ $choice -eq 3 ]; then
+echo "Running Nikto Scan with increased verbosity and evasion"
+read -p "Enter the target host: " target_host
+nikto -h $target_host -verbose -evasion 5
+elif [ $choice -eq 4 ]; then
+echo "Running Nikto Scan with increased verbosity, evasion, and host credentials"
+read -p "Enter the target host: " target_host
+read -p "Enter the username: " username
+read -p "Enter the password: " password
+nikto -h $target_host -verbose -evasion 5 -user $username -pass $password
+elif [ $choice -eq 5 ]; then
+echo "Quitting"
+else
+echo "Invalid input, please choose a value between 1 and 5"
+fi
